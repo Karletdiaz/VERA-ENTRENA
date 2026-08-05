@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vera &mdash; Panel de Entrenamiento de Karen</title>
+<style>
+
+:root{
+  --pink: #F7C9E0; --pink-deep:#EE93C1;
+  --aqua: #BFF2E6; --aqua-deep:#6FD9C0;
+  --lilac:#E1D6FB; --lilac-deep:#B196EA;
+  --text:#4A3F58; --text-soft:#8B7FA0;
+  --card-bg:rgba(255,255,255,0.78); --card-border:rgba(255,255,255,0.9);
+  --shadow:0 10px 26px rgba(148,120,178,0.16);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(160deg,#FDEEF6 0%,#F1FBF8 45%,#F1EBFD 100%);
+}
+.wrap{max-width:560px;margin:0 auto;padding:22px 16px 50px;}
+header{text-align:center;margin-bottom:14px;}
+.badge{display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(120deg,var(--pink),var(--lilac));color:var(--text);
+  padding:6px 16px;border-radius:999px;font-size:12.5px;font-weight:700;box-shadow:var(--shadow);}
+h1{font-size:22px;margin:12px 0 2px;font-weight:800;}
+.subtitle{font-size:13.5px;color:var(--text-soft);margin:0;}
+.meta-row{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.meta-pill{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;
+  padding:8px 12px;font-size:12px;font-weight:700;color:var(--text-soft);box-shadow:var(--shadow);}
+.meta-pill b{color:var(--text);font-weight:800;}
+
+.tabinput{position:absolute;opacity:0;pointer-events:none;width:0;height:0;}
+
+nav.days{display:flex;gap:6px;justify-content:space-between;margin:20px 0 16px;
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:18px;padding:6px;box-shadow:var(--shadow);}
+nav.days label{flex:1;text-align:center;cursor:pointer;border-radius:14px;padding:10px 2px 8px;
+  font-size:12.5px;font-weight:800;color:var(--text-soft);display:block;}
+
+.panels .panel{display:none;animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:24px;
+  padding:20px 18px;box-shadow:var(--shadow);margin-bottom:16px;}
+.day-title h2{font-size:18px;margin:0 0 3px;font-weight:800;}
+.day-title p{margin:0;font-size:12.5px;color:var(--text-soft);}
+
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text-soft);font-weight:800;margin:16px 0 8px;}
+.box{background:rgba(255,255,255,0.55);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.45;}
+.box.pink{background:linear-gradient(120deg,rgba(247,201,224,.55),rgba(247,201,224,.25));}
+.box.aqua{background:linear-gradient(120deg,rgba(191,242,230,.6),rgba(191,242,230,.28));}
+.box.lilac{background:linear-gradient(120deg,rgba(225,214,251,.6),rgba(225,214,251,.28));}
+
+ul.exercises{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+ul.exercises li{padding:0;}
+.ex-item{display:block;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.excheck{position:absolute;opacity:0;pointer-events:none;width:0;height:0;}
+.ex-row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.6);
+  border-radius:16px;padding:12px 14px;transition:background .15s ease;}
+.excheck:checked ~ .ex-row{background:linear-gradient(120deg,rgba(191,242,230,.7),rgba(225,214,251,.4));}
+.check{width:26px;height:26px;border-radius:50%;border:2px solid var(--lilac-deep);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;}
+.excheck:checked ~ .ex-row .check{background:var(--aqua-deep);border-color:var(--aqua-deep);color:#fff;}
+.ex-info{flex:1;min-width:0;}
+.ex-name{font-size:14px;font-weight:700;margin:0 0 3px;}
+.excheck:checked ~ .ex-row .ex-name{text-decoration:line-through;opacity:.7;}
+.ex-detail{font-size:12px;color:var(--text-soft);display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 4px;}
+.ex-detail span{white-space:nowrap;}
+.ex-weight{display:inline-block;font-size:12px;font-weight:800;color:var(--pink-deep);
+  background:rgba(238,147,193,0.14);border-radius:8px;padding:2px 8px;margin-top:2px;}
+
+.rest-card{text-align:center;padding:34px 20px;}
+.rest-card .emoji{font-size:40px;}
+.rest-card h2{margin:10px 0 6px;font-size:19px;}
+.rest-card p{font-size:13.5px;color:var(--text-soft);margin:4px 0;}
+
+footer{text-align:center;margin-top:22px;}
+.legend{font-size:11px;color:var(--text-soft);margin-top:10px;line-height:1.6;}
+.signature{margin-top:16px;font-size:12px;color:var(--text-soft);}
+.signature b{color:var(--pink-deep);}
+.hint{font-size:11.5px;color:var(--text-soft);text-align:center;margin:2px 0 0;}
+
+#tab-lunes:checked ~ .panels #panel-lunes{display:block;}
+#tab-lunes:checked ~ nav.days label[for="tab-lunes"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+#tab-martes:checked ~ .panels #panel-martes{display:block;}
+#tab-martes:checked ~ nav.days label[for="tab-martes"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+#tab-miercoles:checked ~ .panels #panel-miercoles{display:block;}
+#tab-miercoles:checked ~ nav.days label[for="tab-miercoles"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+#tab-jueves:checked ~ .panels #panel-jueves{display:block;}
+#tab-jueves:checked ~ nav.days label[for="tab-jueves"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+#tab-viernes:checked ~ .panels #panel-viernes{display:block;}
+#tab-viernes:checked ~ nav.days label[for="tab-viernes"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+#tab-sabado:checked ~ .panels #panel-sabado{display:block;}
+#tab-sabado:checked ~ nav.days label[for="tab-sabado"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+#tab-domingo:checked ~ .panels #panel-domingo{display:block;}
+#tab-domingo:checked ~ nav.days label[for="tab-domingo"]{background:linear-gradient(135deg,var(--pink),var(--lilac));color:var(--text);box-shadow:0 6px 14px rgba(180,140,210,.35);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="badge">&#10022; Vera &mdash; tu entrenadora</span>
+    <h1>Panel de entrenamiento</h1>
+    <p class="subtitle">Karen &middot; Recomposici&oacute;n corporal</p>
+    <div class="meta-row">
+      <div class="meta-pill">Semana <b>2</b> / 16</div>
+      <div class="meta-pill">Mesociclo 1 &mdash; Acumulaci&oacute;n</div>
+    </div>
+  </header>
+
+  <input type="radio" name="tab" id="tab-lunes" class="tabinput" checked>
+<input type="radio" name="tab" id="tab-martes" class="tabinput">
+<input type="radio" name="tab" id="tab-miercoles" class="tabinput">
+<input type="radio" name="tab" id="tab-jueves" class="tabinput">
+<input type="radio" name="tab" id="tab-viernes" class="tabinput">
+<input type="radio" name="tab" id="tab-sabado" class="tabinput">
+<input type="radio" name="tab" id="tab-domingo" class="tabinput">
+
+  <nav class="days">
+    <label for="tab-lunes">L</label>
+<label for="tab-martes">M</label>
+<label for="tab-miercoles">X</label>
+<label for="tab-jueves">J</label>
+<label for="tab-viernes">V</label>
+<label for="tab-sabado">S</label>
+<label for="tab-domingo">D</label>
+  </nav>
+
+  <div class="panels">
+    
+    <section class="panel" id="panel-lunes">
+      <div class="card">
+        <div class="day-title">
+          <h2>Lunes</h2>
+          <p>Glúteo + Cuádriceps</p>
+        </div>
+
+        <div class="section-label">Activaci&oacute;n</div>
+        <div class="box lilac">Puente de glúteo con banda 2x15 + mini-band walk 2x10 pasos por lado.</div>
+
+        <div class="section-label">Ejercicios (con peso objetivo &#128170;)</div>
+        <ul class="exercises">
+      <li>
+        <label class="ex-item" for="ex-lunes-0">
+          <input type="checkbox" class="excheck" id="ex-lunes-0" data-day="lunes" data-idx="0">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Sentadilla con barra</p>
+              <div class="ex-detail"><span>4 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-100 seg</span></div>
+              <span class="ex-weight">&#128170; 50kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-lunes-1">
+          <input type="checkbox" class="excheck" id="ex-lunes-1" data-day="lunes" data-idx="1">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Hip thrust con barra</p>
+              <div class="ex-detail"><span>4 x 10-12</span><span>&middot; RIR 2</span><span>&middot; descanso 50-90 seg</span></div>
+              <span class="ex-weight">&#128170; 60kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-lunes-2">
+          <input type="checkbox" class="excheck" id="ex-lunes-2" data-day="lunes" data-idx="2">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Extensión de cuádriceps (máquina)</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1-2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 25kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-lunes-3">
+          <input type="checkbox" class="excheck" id="ex-lunes-3" data-day="lunes" data-idx="3">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Curl femoral (máquina)</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1-2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-lunes-4">
+          <input type="checkbox" class="excheck" id="ex-lunes-4" data-day="lunes" data-idx="4">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Sentadilla búlgara con mancuernas</p>
+              <div class="ex-detail"><span>3 x 10 c/pierna</span><span>&middot; RIR 2</span><span>&middot; descanso 50-75 seg</span></div>
+              <span class="ex-weight">&#128170; 12kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+        </ul>
+
+        <div class="section-label">Core / cierre</div>
+        <div class="box pink">Indirecto — activo en los compuestos de hoy.</div>
+
+        <div class="section-label">Cardio</div>
+        <div class="box aqua">Sin cardio hoy: día de glúteo pesado, para no restar recuperación a las piernas.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-martes">
+      <div class="card">
+        <div class="day-title">
+          <h2>Martes</h2>
+          <p>Espalda + Hombro + Bíceps</p>
+        </div>
+
+        <div class="section-label">Activaci&oacute;n</div>
+        <div class="box lilac">Face pull con banda 2x15 + retracción escapular 2x12.</div>
+
+        <div class="section-label">Ejercicios (con peso objetivo &#128170;)</div>
+        <ul class="exercises">
+      <li>
+        <label class="ex-item" for="ex-martes-0">
+          <input type="checkbox" class="excheck" id="ex-martes-0" data-day="martes" data-idx="0">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Jalón al pecho (polea alta, techo máquina 30kg)</p>
+              <div class="ex-detail"><span>4 x 15-20 al fallo</span><span>&middot; RIR 1-2</span><span>&middot; descanso 90 seg</span></div>
+              <span class="ex-weight">&#128170; 30kg (techo)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-martes-1">
+          <input type="checkbox" class="excheck" id="ex-martes-1" data-day="martes" data-idx="1">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Remo con barra</p>
+              <div class="ex-detail"><span>4 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-90 seg</span></div>
+              <span class="ex-weight">&#128170; 30kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-martes-2">
+          <input type="checkbox" class="excheck" id="ex-martes-2" data-day="martes" data-idx="2">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Remo a una mano con mancuerna</p>
+              <div class="ex-detail"><span>3 x 10-12 c/brazo</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-martes-3">
+          <input type="checkbox" class="excheck" id="ex-martes-3" data-day="martes" data-idx="3">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Press militar con barra</p>
+              <div class="ex-detail"><span>3 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-90 seg</span></div>
+              <span class="ex-weight">&#128170; 20kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-martes-4">
+          <input type="checkbox" class="excheck" id="ex-martes-4" data-day="martes" data-idx="4">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Vuelos laterales con mancuernas</p>
+              <div class="ex-detail"><span>3 x 15</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 5kg (si no llegás a 15, probá 3-4kg)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-martes-5">
+          <input type="checkbox" class="excheck" id="ex-martes-5" data-day="martes" data-idx="5">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Curl de bíceps en banco scott</p>
+              <div class="ex-detail"><span>3 x 10-12</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 16kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+        </ul>
+
+        <div class="section-label">Core / cierre</div>
+        <div class="box pink">—</div>
+
+        <div class="section-label">Cardio</div>
+        <div class="box aqua">&#128293; 20-30 min &mdash; Al cierre de la sesión, si el día te lo permite. Nunca a costa de la fuerza.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-miercoles">
+      <div class="card">
+        <div class="day-title">
+          <h2>Miércoles</h2>
+          <p>Glúteo + Isquiotibiales + Abdomen</p>
+        </div>
+
+        <div class="section-label">Activaci&oacute;n</div>
+        <div class="box lilac">Bird-dog 2x10 c/lado + dead bug 2x10.</div>
+
+        <div class="section-label">Ejercicios (con peso objetivo &#128170;)</div>
+        <ul class="exercises">
+      <li>
+        <label class="ex-item" for="ex-miercoles-0">
+          <input type="checkbox" class="excheck" id="ex-miercoles-0" data-day="miercoles" data-idx="0">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Peso muerto rumano con barra</p>
+              <div class="ex-detail"><span>4 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-100 seg</span></div>
+              <span class="ex-weight">&#128170; 50kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-miercoles-1">
+          <input type="checkbox" class="excheck" id="ex-miercoles-1" data-day="miercoles" data-idx="1">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Hiperextensión en banco romano</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-miercoles-2">
+          <input type="checkbox" class="excheck" id="ex-miercoles-2" data-day="miercoles" data-idx="2">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Puente de glúteo bipodal con marcha</p>
+              <div class="ex-detail"><span>3 x 10-12 toques/lado</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; Peso corporal</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-miercoles-3">
+          <input type="checkbox" class="excheck" id="ex-miercoles-3" data-day="miercoles" data-idx="3">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Abducción de cadera con banda</p>
+              <div class="ex-detail"><span>3 x 15 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; Banda gruesa (+ tobilleras livianas si tenés)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-miercoles-4">
+          <input type="checkbox" class="excheck" id="ex-miercoles-4" data-day="miercoles" data-idx="4">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Patada de glúteo con tobilleras</p>
+              <div class="ex-detail"><span>3 x 15 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 5kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+        </ul>
+
+        <div class="section-label">Core / cierre</div>
+        <div class="box pink">Plancha frontal 3x40 seg + Pallof press con banda 3x12 c/lado.</div>
+
+        <div class="section-label">Cardio</div>
+        <div class="box aqua">Sin cardio hoy: día de glúteo pesado.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-jueves">
+      <div class="card">
+        <div class="day-title">
+          <h2>Jueves</h2>
+          <p>Pecho + Hombro + Tríceps</p>
+        </div>
+
+        <div class="section-label">Activaci&oacute;n</div>
+        <div class="box lilac">Rotación de hombro con banda 2x10 + lagartija inclinada (manos en banco/silla) 2x10.</div>
+
+        <div class="section-label">Ejercicios (con peso objetivo &#128170;)</div>
+        <ul class="exercises">
+      <li>
+        <label class="ex-item" for="ex-jueves-0">
+          <input type="checkbox" class="excheck" id="ex-jueves-0" data-day="jueves" data-idx="0">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Press banca plano con barra</p>
+              <div class="ex-detail"><span>4 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-100 seg</span></div>
+              <span class="ex-weight">&#128170; 20kg (salto grande a propósito, ajustá según serie 1)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-jueves-1">
+          <input type="checkbox" class="excheck" id="ex-jueves-1" data-day="jueves" data-idx="1">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Press inclinado con mancuernas</p>
+              <div class="ex-detail"><span>3 x 10-12</span><span>&middot; RIR 2</span><span>&middot; descanso 50-75 seg</span></div>
+              <span class="ex-weight">&#128170; 8kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-jueves-2">
+          <input type="checkbox" class="excheck" id="ex-jueves-2" data-day="jueves" data-idx="2">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Aperturas con mancuernas</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 8kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-jueves-3">
+          <input type="checkbox" class="excheck" id="ex-jueves-3" data-day="jueves" data-idx="3">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Vuelos posteriores con mancuernas</p>
+              <div class="ex-detail"><span>3 x 15</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 3kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-jueves-4">
+          <input type="checkbox" class="excheck" id="ex-jueves-4" data-day="jueves" data-idx="4">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Extensión de tríceps (polea alta)</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-jueves-5">
+          <input type="checkbox" class="excheck" id="ex-jueves-5" data-day="jueves" data-idx="5">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Fondos en banco</p>
+              <div class="ex-detail"><span>3 x al fallo técnico</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; Peso corporal</span>
+            </span>
+          </span>
+        </label>
+      </li>
+        </ul>
+
+        <div class="section-label">Core / cierre</div>
+        <div class="box pink">—</div>
+
+        <div class="section-label">Cardio</div>
+        <div class="box aqua">&#128293; 20-30 min &mdash; Al cierre de la sesión, si el día te lo permite.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-viernes">
+      <div class="card">
+        <div class="day-title">
+          <h2>Viernes</h2>
+          <p>Glúteo/Pierna metabólico + Abdomen</p>
+        </div>
+
+        <div class="section-label">Activaci&oacute;n</div>
+        <div class="box lilac">Monster walk con banda 2x10 pasos c/lado.</div>
+
+        <div class="section-label">Ejercicios (con peso objetivo &#128170;)</div>
+        <ul class="exercises">
+      <li>
+        <label class="ex-item" for="ex-viernes-0">
+          <input type="checkbox" class="excheck" id="ex-viernes-0" data-day="viernes" data-idx="0">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Sentadilla sumo con mancuerna</p>
+              <div class="ex-detail"><span>4 x 12-15</span><span>&middot; RIR 2</span><span>&middot; descanso 50-75 seg</span></div>
+              <span class="ex-weight">&#128170; 17-18kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-viernes-1">
+          <input type="checkbox" class="excheck" id="ex-viernes-1" data-day="viernes" data-idx="1">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Step up con mancuernas</p>
+              <div class="ex-detail"><span>3 x 10 c/pierna</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 12kg</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-viernes-2">
+          <input type="checkbox" class="excheck" id="ex-viernes-2" data-day="viernes" data-idx="2">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Patada de glúteo con banda (o tobilleras)</p>
+              <div class="ex-detail"><span>3 x 15 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 5kg (tobilleras)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-viernes-3">
+          <input type="checkbox" class="excheck" id="ex-viernes-3" data-day="viernes" data-idx="3">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Puente de glúteo bipodal con marcha</p>
+              <div class="ex-detail"><span>3 x 10-12 toques/lado</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; Peso corporal</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-viernes-4">
+          <input type="checkbox" class="excheck" id="ex-viernes-4" data-day="viernes" data-idx="4">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Sentadilla búlgara con mancuernas</p>
+              <div class="ex-detail"><span>3 x 12-15 c/pierna</span><span>&middot; RIR 1-2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg (estimado, ajustá 1ª sesión)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+        </ul>
+
+        <div class="section-label">Core / cierre</div>
+        <div class="box pink">Crunch con rotación 3x15 + plancha lateral 3x30 seg c/lado.</div>
+
+        <div class="section-label">Cardio</div>
+        <div class="box aqua">Sin cardio hoy: día de glúteo pesado.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-sabado">
+      <div class="card">
+        <div class="day-title">
+          <h2>Sábado</h2>
+          <p>Espalda + Brazos + Core/Movilidad</p>
+        </div>
+
+        <div class="section-label">Activaci&oacute;n</div>
+        <div class="box lilac">Movilidad torácica 2 min + band pull-apart 2x15.</div>
+
+        <div class="section-label">Ejercicios (con peso objetivo &#128170;)</div>
+        <ul class="exercises">
+      <li>
+        <label class="ex-item" for="ex-sabado-0">
+          <input type="checkbox" class="excheck" id="ex-sabado-0" data-day="sabado" data-idx="0">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Pull-over en polea alta</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 15-18kg (estimado, ajustá 1ª sesión)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-sabado-1">
+          <input type="checkbox" class="excheck" id="ex-sabado-1" data-day="sabado" data-idx="1">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Remo con mancuerna en banco inclinado</p>
+              <div class="ex-detail"><span>3 x 10-12</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; 8-10kg (estimado, ajustá 1ª sesión)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-sabado-2">
+          <input type="checkbox" class="excheck" id="ex-sabado-2" data-day="sabado" data-idx="2">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Curl de bíceps alternado</p>
+              <div class="ex-detail"><span>3 x 10-12 c/brazo</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 6-8kg (estimado, ajustá 1ª sesión)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-sabado-3">
+          <input type="checkbox" class="excheck" id="ex-sabado-3" data-day="sabado" data-idx="3">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Extensión de tríceps polea alta (inv.)</p>
+              <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 8-10kg (similar a la del jueves)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+      <li>
+        <label class="ex-item" for="ex-sabado-4">
+          <input type="checkbox" class="excheck" id="ex-sabado-4" data-day="sabado" data-idx="4">
+          <span class="ex-row">
+            <span class="check">&#10003;</span>
+            <span class="ex-info">
+              <p class="ex-name">Vuelos laterales + posteriores (superserie)</p>
+              <div class="ex-detail"><span>3 x 15+15</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 5kg + 3kg (los mismos que ya usás)</span>
+            </span>
+          </span>
+        </label>
+      </li>
+        </ul>
+
+        <div class="section-label">Core / cierre</div>
+        <div class="box pink">Plancha frontal 3x45 seg + movilidad de cadera 90/90, 5 min.</div>
+
+        <div class="section-label">Cardio</div>
+        <div class="box aqua">&#128293; 20-30 min &mdash; Al cierre de la sesión, si el día te lo permite.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-domingo">
+      <div class="card rest-card">
+        <div class="emoji">&#127807;</div>
+        <h2>Domingo &mdash; Descanso</h2>
+        <p>Movilidad o estiramiento suave opcional (10-15 min).</p>
+        <p>Caminata larga sin apuro si quer&eacute;s (30-45 min) &mdash; no compite con nada, es totalmente opcional.</p>
+      </div>
+    </section>
+  </div>
+
+  <p class="hint">Toc&aacute; el d&iacute;a arriba para verlo &middot; toc&aacute; cada ejercicio para marcarlo hecho &middot; &#128170; = peso objetivo de esta semana.</p>
+
+  <footer>
+    <div class="legend">
+      RIR = repeticiones en reserva &middot; Estructura fija: 10' calentamiento + 5' activaci&oacute;n + hasta 80' fuerza (techo, no obligatorio llenarlo) + 5' estiramiento.<br>
+      Los pesos de lunes y martes son los que ya confirmaste con RIR real. Mi&eacute;rcoles/jueves/viernes son proyecci&oacute;n de tu progresi&oacute;n con datos previos. S&aacute;bado es una estimaci&oacute;n inicial (todav&iacute;a no lo entrenaste) &mdash; ajust&aacute; en la primera sesi&oacute;n seg&uacute;n c&oacute;mo se sienta, y avisame el dato real despu&eacute;s.<br>
+      T&eacute;cnica, progresi&oacute;n y justificaci&oacute;n cient&iacute;fica completas en Programa_Karen_16_semanas (carpeta "Entrenadora Vera").
+    </div>
+    <div class="signature">Programado por <b>Vera</b>, tu entrenadora personal &#10022;</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  try {
+    var slugs = ["lunes","martes","miercoles","jueves","viernes","sabado","domingo"];
+    var jsDayToIdx = [6,0,1,2,3,4,5];
+    var todaySlug = slugs[jsDayToIdx[new Date().getDay()]];
+    var todayRadio = document.getElementById("tab-" + todaySlug);
+    if (todayRadio) todayRadio.checked = true;
+
+    function getMonday(d){
+      d = new Date(d);
+      var day = d.getDay();
+      var diff = (day === 0 ? -6 : 1) - day;
+      d.setDate(d.getDate() + diff);
+      d.setHours(0,0,0,0);
+      return d;
+    }
+    function isoDate(d){ return d.toISOString().slice(0,10); }
+    var monday = getMonday(new Date());
+
+    function dateForSlug(slug){
+      var idx = slugs.indexOf(slug);
+      var d = new Date(monday);
+      d.setDate(monday.getDate() + idx);
+      return d;
+    }
+
+    var boxes = document.querySelectorAll('.excheck');
+    boxes.forEach(function(box){
+      var key = "vera_" + isoDate(dateForSlug(box.getAttribute('data-day'))) + "_ex" + box.getAttribute('data-idx');
+      box.checked = localStorage.getItem(key) === "1";
+      box.addEventListener('change', function(){
+        localStorage.setItem(key, box.checked ? "1" : "0");
+      });
+    });
+  } catch(e) { /* si algo falla, el panel sigue funcionando igual sin JS */ }
+})();
+</script>
+</body>
+</html>
