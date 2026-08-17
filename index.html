@@ -83,6 +83,19 @@ ul.exercises li{padding:0;}
 .ex-how p{margin:0 10px 8px;font-size:12.5px;line-height:1.5;color:var(--text);
   background:rgba(255,255,255,0.55);border-radius:12px;padding:8px 12px;}
 
+.ex-log{margin:2px 4px 0 4px;}
+.ex-log summary{list-style:none;cursor:pointer;font-size:11.5px;font-weight:700;color:var(--aqua-deep);
+  padding:4px 10px;-webkit-tap-highlight-color:transparent;}
+.ex-log summary::-webkit-details-marker{display:none;}
+.ex-log[open] summary{color:var(--pink-deep);}
+.log-fields{margin:0 10px 10px;background:rgba(255,255,255,0.55);border-radius:12px;padding:10px 12px;
+  display:flex;flex-direction:column;gap:8px;}
+.log-fields label{font-size:11.5px;font-weight:700;color:var(--text-soft);display:flex;flex-direction:column;gap:3px;}
+.log-fields input, .log-fields textarea{font-size:13px;font-family:inherit;color:var(--text);
+  border:1px solid rgba(177,150,234,0.35);border-radius:9px;padding:7px 9px;background:#fff;resize:none;}
+.log-fields input:focus, .log-fields textarea:focus{outline:2px solid var(--aqua-deep);outline-offset:1px;}
+.log-hint{margin:0;font-size:10.5px;color:var(--text-soft);font-style:italic;}
+
 .rest-card{text-align:center;padding:34px 20px;}
 .rest-card .emoji{font-size:40px;}
 .rest-card h2{margin:10px 0 6px;font-size:19px;}
@@ -118,7 +131,7 @@ footer{text-align:center;margin-top:22px;}
     <h1>Panel de entrenamiento</h1>
     <p class="subtitle">Karen &middot; Recomposici&oacute;n corporal</p>
     <div class="meta-row">
-      <div class="meta-pill">Semana <b>2</b> / 16</div>
+      <div class="meta-pill">Semana <b>3</b> / 16</div>
       <div class="meta-pill">Mesociclo 1 &mdash; Acumulaci&oacute;n</div>
     </div>
   </header>
@@ -174,6 +187,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Pies al ancho de hombros, pecho arriba, bajá controlada. Empujá el piso con toda la planta, no solo los talones.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="lunes" data-idx="0" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="lunes" data-idx="0" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="lunes" data-idx="0" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-lunes-1">
@@ -195,6 +223,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Espalda alta apoyada en el banco, mentón metido. Subís hasta alinear cadera y hombros, apretando bien el glúteo arriba — sin arquear la zona lumbar.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="lunes" data-idx="1" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="lunes" data-idx="1" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="lunes" data-idx="1" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-lunes-2">
@@ -215,6 +258,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Espalda pegada al respaldo, extendé la pierna sin despegar el muslo del asiento y controlá la bajada, sin soltar de golpe.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="lunes" data-idx="2" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="lunes" data-idx="2" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="lunes" data-idx="2" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-lunes-3">
@@ -235,6 +293,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Cadera pegada al asiento, flexioná llevando el talón hacia el glúteo, sin levantar la cadera para ayudarte.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="lunes" data-idx="3" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="lunes" data-idx="3" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="lunes" data-idx="3" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-lunes-4">
@@ -256,6 +329,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Pie trasero apoyado en banco/silla, el trabajo lo hace la pierna de adelante. Bajá recto (no hacia adelante), rodilla alineada con el pie.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="lunes" data-idx="4" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="lunes" data-idx="4" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="lunes" data-idx="4" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
         </ul>
 
@@ -302,6 +390,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Agarre un poco más ancho que los hombros, llevá la barra hacia la parte alta del pecho sacando pecho, sin balancear el torso hacia atrás.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="martes" data-idx="0" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="martes" data-idx="0" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="martes" data-idx="0" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-martes-1">
@@ -322,6 +425,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Torso inclinado ~45°, espalda recta (no redondeada). Tirá la barra hacia el ombligo apretando los omóplatos.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="martes" data-idx="1" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="martes" data-idx="1" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="martes" data-idx="1" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-martes-2">
@@ -343,6 +461,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Apoyo de mano y rodilla en el banco, tirá el codo hacia atrás pegado al cuerpo, sin rotar el torso.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="martes" data-idx="2" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="martes" data-idx="2" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="martes" data-idx="2" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-martes-3">
@@ -365,6 +498,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>De pie, agarre un poco más ancho que los hombros, empujá la barra recto hacia arriba sin arquear la zona lumbar — activá glúteo y abdomen antes de empujar.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="martes" data-idx="3" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="martes" data-idx="3" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="martes" data-idx="3" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-martes-4">
@@ -386,6 +534,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Codos con leve flexión fija, subís los brazos hasta la altura del hombro liderando con el codo (no con la mano), sin impulso del torso.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="martes" data-idx="4" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="martes" data-idx="4" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="martes" data-idx="4" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-martes-5">
@@ -406,6 +569,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Brazos apoyados completos en el banco, subí sin despegar el codo del acolchado y controlá la bajada.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="martes" data-idx="5" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="martes" data-idx="5" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="martes" data-idx="5" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
         </ul>
 
@@ -445,12 +623,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Peso muerto rumano con barra</p>
               <div class="ex-detail"><span>4 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-100 seg</span></div>
-              <span class="ex-weight">&#128170; 50kg</span>
+              <span class="ex-weight">&#128170; 50kg (mantener — llegaste al techo del rango pero al límite total)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Rodillas con leve flexión fija, empujás la cadera hacia atrás con la barra pegada a las piernas, espalda recta todo el recorrido.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="miercoles" data-idx="0" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="miercoles" data-idx="0" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="miercoles" data-idx="0" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-miercoles-1">
@@ -464,12 +657,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Hiperextensión en banco romano</p>
               <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
-              <span class="ex-weight">&#128170; 10kg</span>
+              <span class="ex-weight">&#128170; 10kg (mantener — piso del rango al límite; no busques la falla acá, es zona lumbar cargada)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Cadera apoyada en el borde del banco, bajás controlada hasta sentir el estiramiento en isquios/glúteo y subís sin hiperextender la zona lumbar arriba.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="miercoles" data-idx="1" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="miercoles" data-idx="1" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="miercoles" data-idx="1" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-miercoles-2">
@@ -481,14 +689,29 @@ footer{text-align:center;margin-top:22px;}
 <line x1="30" y1="40" x2="42" y2="26" stroke="#B196EA" stroke-width="3" stroke-linecap="round"/>
 <path d="M30 40 L26 26 L20 30" fill="none" stroke="#B196EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span class="ex-info">
-              <p class="ex-name">Puente de glúteo bipodal con marcha</p>
-              <div class="ex-detail"><span>3 x 10-12 toques/lado</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
-              <span class="ex-weight">&#128170; Peso corporal</span>
+              <p class="ex-name">Puente de glúteo unilateral con rodilla flexionada</p>
+              <div class="ex-detail"><span>3 x 10-12/pierna</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
+              <span class="ex-weight">&#128170; Peso corporal (subiste de nivel: llegaste al techo de la marcha con el RIR pedido, dos semanas seguidas)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
-        <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Acostada, cadera arriba y firme, levantás una rodilla hacia el pecho sin que la cadera caiga ni rote — eso es un 'toque'.</p></details>
+        <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Acostada, apoyás un solo pie, la otra rodilla flexionada apuntando al techo. Subís la cadera con el pie de apoyo sin que el lado libre caiga ni rotes — si se te complica el equilibrio, volvé un par de series a la marcha bipodal.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="miercoles" data-idx="2" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="miercoles" data-idx="2" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="miercoles" data-idx="2" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-miercoles-3">
@@ -502,12 +725,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Abducción de cadera con banda</p>
               <div class="ex-detail"><span>3 x 15 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; Banda gruesa (+ tobilleras livianas si tenés)</span>
+              <span class="ex-weight">&#128170; Banda gruesa + tobilleras 5kg (mantener — llegaste al objetivo pero al límite)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>De pie o de costado, separás la pierna contra la banda liderando con el talón, sin balancear el torso.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="miercoles" data-idx="3" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="miercoles" data-idx="3" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="miercoles" data-idx="3" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-miercoles-4">
@@ -522,13 +760,28 @@ footer{text-align:center;margin-top:22px;}
 <circle cx="46" cy="44" r="3" fill="#EE93C1"/></svg></span>
             <span class="ex-info">
               <p class="ex-name">Patada de glúteo con tobilleras</p>
-              <div class="ex-detail"><span>3 x 15 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; 5kg</span>
+              <div class="ex-detail"><span>3 x 10-12 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg (subiste desde 5kg — reduje el objetivo de reps porque es un salto grande, volvemos a 15 cuando te sientas cómoda)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Apoyo de manos y rodilla, extendés la pierna hacia atrás y arriba apretando el glúteo, sin arquear la zona lumbar.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="miercoles" data-idx="4" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="miercoles" data-idx="4" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="miercoles" data-idx="4" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
         </ul>
 
@@ -569,12 +822,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Press banca plano con barra (acostada — NO es el press militar)</p>
               <div class="ex-detail"><span>4 x 8-10</span><span>&middot; RIR 2</span><span>&middot; descanso 50-100 seg</span></div>
-              <span class="ex-weight">&#128170; 23kg (subiste desde 20kg: la semana pasada llegaste a 10 reps en las 4 series sin ir al límite — progresión limpia)</span>
+              <span class="ex-weight">&#128170; 23kg (confirmá si usaste 20 o 23kg la última vez — avisame así ajusto bien)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Escápulas juntas y hacia abajo, la barra baja hasta rozar el pecho a la altura del esternón. Empujás derecho hacia arriba sin despegar la cola del banco.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="jueves" data-idx="0" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="jueves" data-idx="0" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="jueves" data-idx="0" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-jueves-1">
@@ -589,12 +857,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Press inclinado con mancuernas</p>
               <div class="ex-detail"><span>3 x 10-12</span><span>&middot; RIR 2</span><span>&middot; descanso 50-75 seg</span></div>
-              <span class="ex-weight">&#128170; 8kg (mantener, buscando llegar a 12)</span>
+              <span class="ex-weight">&#128170; 8kg (mantener — techo del rango pero al límite)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Banco a ~30-45°, las mancuernas bajan a los lados del pecho. Empujás hacia arriba y un poco hacia adentro, sin chocarlas.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="jueves" data-idx="1" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="jueves" data-idx="1" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="jueves" data-idx="1" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-jueves-2">
@@ -609,12 +892,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Aperturas con mancuernas</p>
               <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1</span><span>&middot; descanso 50-60 seg</span></div>
-              <span class="ex-weight">&#128170; 8kg (mantener — vas mejorando reps semana a semana, todavía debajo del rango)</span>
+              <span class="ex-weight">&#128170; 8kg (mantener — piso del rango al límite)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Codos con leve flexión fija todo el movimiento. Abrís como abrazando un tronco grande, sin bajar más de la línea de los hombros.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="jueves" data-idx="2" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="jueves" data-idx="2" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="jueves" data-idx="2" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-jueves-3">
@@ -629,12 +927,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Vuelos posteriores con mancuernas</p>
               <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; 5kg (subiste de 3kg: te sobró margen a 10 reps)</span>
+              <span class="ex-weight">&#128170; 5kg (mantener — piso del rango al límite)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Inclinada hacia adelante, subís los brazos hacia los lados liderando con el codo, apretando entre los omóplatos arriba.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="jueves" data-idx="3" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="jueves" data-idx="3" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="jueves" data-idx="3" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-jueves-4">
@@ -651,12 +964,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Extensión de tríceps (polea alta, agarre de cuerda)</p>
               <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; 20kg (mantener — antes de subir, chequeá técnica: codos pegados al torso todo el recorrido, sin ayudar con el hombro)</span>
+              <span class="ex-weight">&#128170; 23kg (subiste desde 20kg: llegaste a 15 reps con 2 en reserva — progresión limpia)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>De pie frente a la polea, codos pegados al cuerpo todo el recorrido — solo se mueve el antebrazo empujando hacia abajo.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="jueves" data-idx="4" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="jueves" data-idx="4" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="jueves" data-idx="4" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-jueves-5">
@@ -678,6 +1006,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Manos en el borde del banco, bajás flexionando el codo hasta ~90° con los codos apuntando hacia atrás (no a los costados), y empujás hasta extender sin trabar el codo.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="jueves" data-idx="5" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="jueves" data-idx="5" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="jueves" data-idx="5" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
         </ul>
 
@@ -723,6 +1066,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Pies bien separados apuntando hacia afuera, mancuerna colgando con ambas manos. Bajás derecho, pecho arriba.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="viernes" data-idx="0" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="viernes" data-idx="0" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="viernes" data-idx="0" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-viernes-1">
@@ -743,6 +1101,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Pisás el cajón con toda la planta del pie y empujás con esa pierna (no con la de atrás) hasta pararte arriba. Bajás controlada.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="viernes" data-idx="1" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="viernes" data-idx="1" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="viernes" data-idx="1" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-viernes-2">
@@ -756,14 +1129,29 @@ footer{text-align:center;margin-top:22px;}
 <line x1="26" y1="36" x2="46" y2="44" stroke="#B196EA" stroke-width="3" stroke-linecap="round"/>
 <circle cx="46" cy="44" r="3" fill="#EE93C1"/></svg></span>
             <span class="ex-info">
-              <p class="ex-name">Patada de glúteo con banda (o tobilleras)</p>
-              <div class="ex-detail"><span>3 x 15 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; 5kg (tobilleras)</span>
+              <p class="ex-name">Patada de glúteo con tobilleras</p>
+              <div class="ex-detail"><span>3 x 10-12 c/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; 10kg (subiste desde 5kg — reduje el objetivo de reps por el salto grande de peso)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Igual que la del miércoles: apoyo de manos y rodilla, extendés la pierna hacia atrás y arriba apretando el glúteo.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="viernes" data-idx="2" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="viernes" data-idx="2" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="viernes" data-idx="2" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-viernes-3">
@@ -775,14 +1163,29 @@ footer{text-align:center;margin-top:22px;}
 <line x1="30" y1="40" x2="42" y2="26" stroke="#B196EA" stroke-width="3" stroke-linecap="round"/>
 <path d="M30 40 L26 26 L20 30" fill="none" stroke="#B196EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span class="ex-info">
-              <p class="ex-name">Puente de glúteo bipodal con marcha</p>
-              <div class="ex-detail"><span>3 x 10-12 toques/lado</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; Peso corporal</span>
+              <p class="ex-name">Puente de glúteo unilateral con rodilla flexionada</p>
+              <div class="ex-detail"><span>3 x 10-12/pierna</span><span>&middot; RIR 1</span><span>&middot; descanso 45 seg</span></div>
+              <span class="ex-weight">&#128170; Peso corporal (mismo cambio que el miércoles)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Mismo ejercicio que el miércoles.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="viernes" data-idx="3" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="viernes" data-idx="3" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="viernes" data-idx="3" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-viernes-4">
@@ -804,6 +1207,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Mismo ejercicio que el lunes, acá con más reps y menos peso.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="viernes" data-idx="4" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="viernes" data-idx="4" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="viernes" data-idx="4" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
         </ul>
 
@@ -840,14 +1258,29 @@ footer{text-align:center;margin-top:22px;}
 <path d="M22 33 C22 22 30 12 44 10" fill="none" stroke="#B196EA" stroke-width="3" stroke-linecap="round"/>
 <circle cx="46" cy="10" r="3.5" fill="#EE93C1"/></svg></span>
             <span class="ex-info">
-              <p class="ex-name">Pull-over en polea alta</p>
+              <p class="ex-name">Pull-over con mancuerna (acostada en banco)</p>
               <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
-              <span class="ex-weight">&#128170; 20kg (dato real de tu 1ª sesión, subiste sola de la estimación de 15-18kg)</span>
+              <span class="ex-weight">&#128170; 10kg (corregido — este ejercicio es con mancuerna en el banco, no en la polea alta; gracias por avisar)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Acostada en el banco, brazos rectos, llevás el peso desde atrás de la cabeza hasta el pecho sin flexionar mucho el codo.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="sabado" data-idx="0" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="sabado" data-idx="0" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="sabado" data-idx="0" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-sabado-1">
@@ -863,12 +1296,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Remo con mancuerna en banco inclinado</p>
               <div class="ex-detail"><span>3 x 10-12</span><span>&middot; RIR 2</span><span>&middot; descanso 50-60 seg</span></div>
-              <span class="ex-weight">&#128170; 8kg (confirmado — mantener, buscando llegar a 12)</span>
+              <span class="ex-weight">&#128170; 10kg (subiste desde 8kg — mantener, techo del rango pero al límite)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Pecho apoyado en el banco inclinado, tirás la mancuerna hacia la cadera apretando el omóplato, sin usar impulso.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="sabado" data-idx="1" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="sabado" data-idx="1" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="sabado" data-idx="1" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-sabado-2">
@@ -883,12 +1331,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Curl de bíceps alternado</p>
               <div class="ex-detail"><span>3 x 10-12 c/brazo</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; 5kg (dato real, ajustado de la estimación de 6-8kg)</span>
+              <span class="ex-weight">&#128170; 5kg (mantener — piso del rango al límite)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>De pie o sentada, codo fijo pegado al cuerpo, subís alternando brazos sin balancear el torso.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="sabado" data-idx="2" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="sabado" data-idx="2" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="sabado" data-idx="2" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-sabado-3">
@@ -905,12 +1368,27 @@ footer{text-align:center;margin-top:22px;}
             <span class="ex-info">
               <p class="ex-name">Extensión de tríceps polea alta (inv., agarre de cuerda)</p>
               <div class="ex-detail"><span>3 x 12-15</span><span>&middot; RIR 1-2</span><span>&middot; descanso 45 seg</span></div>
-              <span class="ex-weight">&#128170; 20kg (igual que el jueves — antes de subir, chequeá técnica: codos fijos pegados al cuerpo)</span>
+              <span class="ex-weight">&#128170; 23kg (subiste desde 20kg, igual que el jueves — llegaste al techo con margen)</span>
             </span>
             <span class="check">&#10003;</span>
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Misma técnica que la del jueves: codos pegados al cuerpo, solo se mueve el antebrazo.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="sabado" data-idx="3" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="sabado" data-idx="3" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="sabado" data-idx="3" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
       <li>
         <label class="ex-item" for="ex-sabado-4">
@@ -932,6 +1410,21 @@ footer{text-align:center;margin-top:22px;}
           </span>
         </label>
         <details class="ex-how"><summary>&#128161; C&oacute;mo se hace</summary><p>Lateral: subís los brazos a los costados liderando con el codo. Posterior: inclinada adelante, mismo movimiento pero hacia atrás. Encadená una serie de cada una sin descansar entre medio.</p></details>
+        <details class="ex-log">
+          <summary>&#128221; Mi registro</summary>
+          <div class="log-fields">
+            <label>Peso usado
+              <input type="text" class="log-input" data-day="sabado" data-idx="4" data-field="peso" placeholder="ej: 22kg" inputmode="text">
+            </label>
+            <label>Reps por serie
+              <input type="text" class="log-input" data-day="sabado" data-idx="4" data-field="reps" placeholder="ej: 12,12,10" inputmode="text">
+            </label>
+            <label>Notas
+              <textarea class="log-input" data-day="sabado" data-idx="4" data-field="notas" placeholder="RIR, c&oacute;mo te sentiste..." rows="2"></textarea>
+            </label>
+            <p class="log-hint">Se guarda solo en este celular, esta semana. Pasame los datos igual por chat cuando reportes.</p>
+          </div>
+        </details>
       </li>
         </ul>
 
@@ -1002,6 +1495,16 @@ footer{text-align:center;margin-top:22px;}
       box.checked = localStorage.getItem(key) === "1";
       box.addEventListener('change', function(){
         localStorage.setItem(key, box.checked ? "1" : "0");
+      });
+    });
+
+    var logInputs = document.querySelectorAll('.log-input');
+    logInputs.forEach(function(inp){
+      var key = "vera_log_" + isoDate(dateForSlug(inp.getAttribute('data-day'))) + "_ex" + inp.getAttribute('data-idx') + "_" + inp.getAttribute('data-field');
+      var saved = localStorage.getItem(key);
+      if (saved) inp.value = saved;
+      inp.addEventListener('input', function(){
+        localStorage.setItem(key, inp.value);
       });
     });
   } catch(e) { /* si algo falla, el panel sigue funcionando igual sin JS */ }
